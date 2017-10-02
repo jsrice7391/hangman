@@ -1,0 +1,10 @@
+h1,
+h2 {
+    text-align: center;
+}
+
+#play_again {
+    margin: 20%;
+    padding: 40px;
+    background-color: lightgreen;
+}
