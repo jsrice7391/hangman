@@ -6,13 +6,6 @@ var dash = "  ____  ";
 var dashes = [];
 var indexes = [];
 
-function get_number() {
-    var dictionary = ["Alaska", "Alabama", "Arkansas", "Arizona", "California", "Florida"];
-    var word = dictionary[Math.floor(Math.random() * dictionary.length)].split("");
-    var arrd = new String("_", word.Length);
-
-}
-
 function show_span(letter) {
     $.each(word, function(i, l) {
         $("#blanks_list").append("<li class='inline'><p>" + l + "</p></li>");
@@ -28,6 +21,10 @@ function show_letter(letter) {
     });
 }
 
+function get_number() {
+    var word = dictionary[Math.floor(Math.random() * dictionary.length)].split("");
+    return word
+}
 
 
 
@@ -41,31 +38,30 @@ function show_letter(letter) {
 $(document).ready(function() {
 
     show_span(word);
+    get_number();
+
     $("#guessed").html(guessed);
 
     $(".inline p").hide();
 
-
-
-
-
-
-
     $("#the_word").html(word);
-    console.log(word);
-    console.log(dashes);
+
 
     $("#play_again").hide();
 
-    $("#play_again").click(get_number);
+
+    $("#play_again").on("click", function() {
+        get_number();
 
 
+
+    })
 
 
 
     document.onkeydown = function(letter) {
 
-        var letter = String.fromCharCode(letter.keyCode).toLowerCase();
+        var letter = letter.key;
         guessed.push(letter);
 
         if (word.includes(letter)) {
@@ -74,6 +70,7 @@ $(document).ready(function() {
         } else {
             console.log("No, there is no " + letter);
             guessed.push(letter);
+            $("#guessed").html(guessed);
             missed = missed - 1;
             $("#guesses").html(missed);
         }
@@ -81,8 +78,9 @@ $(document).ready(function() {
         if (missed == 0) {
             $("#guess_span").html("YOU HAVE NO MORE GUESSES");
             $("#play_again").show();
-
+            $("guessed").hide();
             return
+
 
 
         };
