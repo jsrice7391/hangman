@@ -8,3 +8,15 @@ h2 {
     padding: 40px;
     background-color: lightgreen;
 }
+
+#blanks_list ul {
+    display: inline-block;
+}
+
+.inline {
+    display: inline-block;
+    margin: 2%;
+    width: 50px;
+    border-bottom: 5px solid red;
+    text-align: center;
+}

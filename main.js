@@ -1,10 +1,10 @@
-console.log("Hello world");
-
 var guessed = [];
-var dictionary = ["Alaska", "Alabama", "Arkansas", "Arizona", "California", "Florida"];
+var dictionary = ["Alaska", "Alabama", "Arkansas", "Arizona", "california", "Florida"];
 var word = dictionary[Math.floor(Math.random() * dictionary.length)].split("");
 var missed = 15;
 var dash = "  ____  ";
+var dashes = [];
+var indexes = [];
 
 function get_number() {
     var dictionary = ["Alaska", "Alabama", "Arkansas", "Arizona", "California", "Florida"];
@@ -13,23 +13,26 @@ function get_number() {
 
 }
 
-function show_span(array) {
+function show_span(letter) {
     $.each(word, function(i, l) {
-        $("#blanks_list").append(dash);
-
+        $("#blanks_list").append("<li class='inline'><p>" + l + "</p></li>");
     })
 };
 
-function find_letter(word = word, letter) {
-    for (var i = 0; i < word.length; i++) {
-        if (word[i] === letter) {
-            $("#blanks_list").append(letter);
+function show_letter(letter) {
+    $.each(word, function(i, l) {
+        if (letter === l) {
+            $('ul li').find('p').eq(i).show();
         }
-    }
+
+    });
 }
 
 
-show_span(word);
+
+
+
+
 
 
 
@@ -37,10 +40,20 @@ show_span(word);
 
 $(document).ready(function() {
 
+    show_span(word);
+    $("#guessed").html(guessed);
+
+    $(".inline p").hide();
+
+
+
+
+
 
 
     $("#the_word").html(word);
     console.log(word);
+    console.log(dashes);
 
     $("#play_again").hide();
 
@@ -50,17 +63,17 @@ $(document).ready(function() {
 
 
 
-    document.onkeyup = function(letter) {
+    document.onkeydown = function(letter) {
 
         var letter = String.fromCharCode(letter.keyCode).toLowerCase();
-
-
+        guessed.push(letter);
 
         if (word.includes(letter)) {
-            find_letter(word, letter);
-            console.log("Yes there is a " + letter);
+            show_letter(letter);
+
         } else {
             console.log("No, there is no " + letter);
+            guessed.push(letter);
             missed = missed - 1;
             $("#guesses").html(missed);
         }
