@@ -2,7 +2,6 @@ var guessed = [];
 var dictionary = states = ["Alaska",
     "Alabama",
     "Arkansas",
-    "American Samoa",
     "Arizona",
     "California",
     "Colorado",
@@ -29,26 +28,26 @@ var dictionary = states = ["Alaska",
     "Mississippi",
     "Montana",
     "North Carolina",
-    " North Dakota",
+    "North Dakota",
     "Nebraska",
     "New Hampshire",
-    "New Jersey",
-    "New Mexico",
+    "New_Jersey",
+    "New_Mexico",
     "Nevada",
-    "New York",
+    "New_York",
     "Ohio",
     "Oklahoma",
     "Oregon",
     "Pennsylvania",
-    "Puerto Rico",
-    "Rhode Island",
-    "South Carolina",
-    "South Dakota",
+    "Puerto_Rico",
+    "Rhode_Island",
+    "South_Carolina",
+    "South_Dakota",
     "Tennessee",
     "Texas",
     "Utah",
     "Virginia",
-    "Virgin Islands",
+    "VirginIslands",
     "Vermont",
     "Washington",
     "Wisconsin",
@@ -86,7 +85,9 @@ function show_letter(letter) {
 function get_number() {
 
     var word = dictionary[Math.floor(Math.random() * dictionary.length)].split("");
-    return word
+    show_span(word)
+    show_letter(word);
+
 }
 
 
@@ -102,7 +103,6 @@ $(document).ready(function() {
     $("li").find(".ar").css("background-color", "red");
 
     show_span(word);
-    get_number();
 
     $("#guessed").html(missed_guesses);
 
@@ -140,8 +140,8 @@ $(document).ready(function() {
         if ($('ul li').children(':visible').length == word.length) {
             $("#winner").show();
             var state = "." + word.join("") + "";
-            console.log(state);
             $(".stately").find(state).css("color", "green");
+            $("#play_again").show();
         }
 
 
