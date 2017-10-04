@@ -1,5 +1,60 @@
 var guessed = [];
-var dictionary = ["Alaska", "Alabama", "Arkansas", "Arizona", "california", "Florida"];
+var dictionary = states = ["Alaska",
+    "Alabama",
+    "Arkansas",
+    "American Samoa",
+    "Arizona",
+    "California",
+    "Colorado",
+    "Connecticut",
+    "District of Columbia",
+    "Delaware",
+    "Florida",
+    "Georgia",
+    "Guam",
+    "Hawaii",
+    "Iowa",
+    "Idaho",
+    "Illinois",
+    "Indiana",
+    "Kansas",
+    "Kentucky",
+    "Louisiana",
+    "Massachusetts",
+    "Maryland",
+    "Maine",
+    "Michigan",
+    "Minnesota",
+    "Missouri",
+    "Mississippi",
+    "Montana",
+    "North Carolina",
+    " North Dakota",
+    "Nebraska",
+    "New Hampshire",
+    "New Jersey",
+    "New Mexico",
+    "Nevada",
+    "New York",
+    "Ohio",
+    "Oklahoma",
+    "Oregon",
+    "Pennsylvania",
+    "Puerto Rico",
+    "Rhode Island",
+    "South Carolina",
+    "South Dakota",
+    "Tennessee",
+    "Texas",
+    "Utah",
+    "Virginia",
+    "Virgin Islands",
+    "Vermont",
+    "Washington",
+    "Wisconsin",
+    "West Virginia",
+    "Wyoming"
+]
 var word = dictionary[Math.floor(Math.random() * dictionary.length)].toLowerCase().split("");
 var missed = 15;
 var missed_guesses = [];
@@ -28,8 +83,6 @@ function show_letter(letter) {
 
 }
 
-
-
 function get_number() {
 
     var word = dictionary[Math.floor(Math.random() * dictionary.length)].split("");
@@ -46,6 +99,7 @@ function get_number() {
 
 
 $(document).ready(function() {
+    $("li").find(".ar").css("background-color", "red");
 
     show_span(word);
     get_number();
@@ -85,7 +139,9 @@ $(document).ready(function() {
         }
         if ($('ul li').children(':visible').length == word.length) {
             $("#winner").show();
-            // action when all are hidden
+            var state = "." + word.join("") + "";
+            console.log(state);
+            $(".stately").find(state).css("color", "green");
         }
 
 

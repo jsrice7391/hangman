@@ -35,3 +35,9 @@ h2 {
     font-size: 400px;
     clear: both;
 }
+
+.stately .va,
+.stately .md,
+.stately .dc {
+    color: #FF0000;
+}
