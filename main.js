@@ -60,15 +60,23 @@ var missed_guesses = [];
 
 var letter_count = 0;
 
+function getRandomArbitrary(word) {
+    return dictionary[Math.floor(Math.random() * dictionary.length)].toLowerCase().split("");
+}
+
+function get_number() {
+    var next_word = getRandomArbitrary();
+    return next_word
 
 
-function show_span(letter) {
-    $.each(word, function(i, l) {
+}
+
+
+function show_span(next_word) {
+    $.each(next_word, function(i, l) {
         $("#blanks_list").append("<li class='inline'><p>" + l + "</p></li>");
-        guessed.push(letter);
     })
 
-    console.log(letter);
 };
 
 function show_letter(letter) {
@@ -82,13 +90,6 @@ function show_letter(letter) {
 
 }
 
-function get_number() {
-
-    var word = dictionary[Math.floor(Math.random() * dictionary.length)].split("");
-    show_span(word)
-    show_letter(word);
-
-}
 
 
 
@@ -100,15 +101,15 @@ function get_number() {
 
 
 $(document).ready(function() {
-    $("li").find(".ar").css("background-color", "red");
 
     show_span(word);
+
 
     $("#guessed").html(missed_guesses);
 
     $(".inline p").hide();
 
-    $("#the_word").html(word);
+    // $("#the_word").html(word);
 
 
     $("#play_again").hide();
@@ -117,12 +118,30 @@ $(document).ready(function() {
 
 
     $("#play_again").on("click", function() {
-        get_number();
+        guessed = [];
+        missed_guesses = [];
+        $("#blanks_list").empty();
+        var next_word = get_number();
+        word = next_word;
+        missed = 15;
+        $("#guessed").html(missed_guesses);
+
+        $("#guesses").html(missed)
+        $('ul li').children(':hidden');
+        $("#play_agian").hide();
+        $("#winner").hide();
+
+        // console.log("The next word is: " + next_word + " so the word is: " + word);
+        show_span(next_word);
+        $(".inline p").hide();
+        console.log(word);
     })
 
 
 
+
     document.onkeydown = function(letter) {
+        console.log(word);
 
         var letter = letter.key;
 
@@ -137,10 +156,11 @@ $(document).ready(function() {
             $("#guesses").html(missed);
             $("#guessed").html(missed_guesses);
         }
+
         if ($('ul li').children(':visible').length == word.length) {
             $("#winner").show();
             var state = "." + word.join("") + "";
-            $(".stately").find(state).css("color", "green");
+            $(".stately").find(state).css("color", "blue");
             $("#play_again").show();
         }
 
