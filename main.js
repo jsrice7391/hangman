@@ -63,6 +63,14 @@ function getRandomArbitrary(word) {
     return dictionary[Math.floor(Math.random() * dictionary.length)].toLowerCase().split("");
 }
 
+function eval_word_for_space(word) {
+    for (var i = 0; i < word.length; i++) {
+        if (word[i] === " ") {
+            show_letter(word[i])
+        }
+    }
+}
+
 function get_number() {
     var next_word = getRandomArbitrary();
     return next_word
@@ -81,7 +89,12 @@ function getRandomColor() {
 
 function show_span(next_word) {
     $.each(next_word, function(i, l) {
-        $("#blanks_list").append("<li class='inline'><p>" + l + "</p></li>");
+        if (l === "_") {
+            $("#blanks_list").append("<li class='space'><p>" + l + "</p></li>");
+        } else {
+            $("#blanks_list").append("<li class='inline'><p>" + l + "</p></li>");
+        }
+
     })
 
 };
@@ -92,13 +105,17 @@ function show_letter(letter) {
         if (letter === l) {
             $('ul li').find('p').eq(i).addClass("show");
         }
-
     });
+}
 
+function eval_for_class(word) {
+    return word.join("").replace(" ", "_")
 }
 
 
+
 $(document).ready(function() {
+
 
     show_span(word);
 
@@ -141,6 +158,8 @@ $(document).ready(function() {
 
 
     document.onkeydown = function(letter) {
+
+        eval_word_for_space(word)
         console.log(word);
 
         var letter = letter.key;
@@ -160,7 +179,9 @@ $(document).ready(function() {
         if ($('ul li').children(':visible').length == word.length) {
             var color = getRandomColor();
             $("#winner").show();
-            var state = "." + word.join("") + "";
+            var state_class = eval_for_class(word);
+            var state = "." + state_class + "";
+
             $(".stately").find(state).css("color", color);
             $("#play_again").show();
         }
