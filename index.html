@@ -17,13 +17,15 @@
 </head>
 
 <body>
-    <h1 class="text-center">
-        Let's play some Hangman!
-    </h1>
+    <div class="container">
+        <h1 class="text-center">
+            Let's play some Hangman!
+        </h1>
 
-    <h2>
-        Press any key to get started!
-    </h2>
+        <h2>
+            Press any key to get started!
+        </h2>
+    </div>
 
 
 
@@ -90,29 +92,21 @@
     <p id="play_again" class="text-center">Play Agian?</p>
     <div class="container">
         <div class="row">
-            <h3 id="winner">
-                YOU WON
-            </h3>
+            <div class="col-md-3 col-xs-12">
+                <h3 id="winner">
+                    YOU WON
+                </h3>
+                <p id="guess_span">
 
+                </p>
 
-
-            <p id="guess_span">
-                This is how many guesses you have: <span id="guesses">15</span>
-            </p>
-
-            <p>
-                These are the letters you have guessed: <span id="guessed">
-        </span>
-            </p>
-
-
-
-
-
+                <p>
+                    These are the letters you have guessed: <span id="guessed"></span>
+                </p>
+            </div>
         </div>
-
         <div class="row">
-            <div class="col-md-10 col-md-offset-1 text-center">
+            <div class="col-md-10 col-md-offset-1 col-xs-12 text-center">
                 <div class="word_display">
                     <ul id="blanks_list">
                     </ul>
@@ -124,6 +118,7 @@
             </div>
 
         </div>
+    </div>
     </div>
 
 

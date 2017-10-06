@@ -31,18 +31,18 @@ var dictionary = states = ["Alaska",
     "North Dakota",
     "Nebraska",
     "New Hampshire",
-    "New_Jersey",
-    "New_Mexico",
+    "New Jersey",
+    "New Mexico",
     "Nevada",
-    "New_York",
+    "New York",
     "Ohio",
     "Oklahoma",
     "Oregon",
     "Pennsylvania",
-    "Puerto_Rico",
-    "Rhode_Island",
-    "South_Carolina",
-    "South_Dakota",
+    "Puerto Rico",
+    "Rhode Island",
+    "South Carolina",
+    "South Dakota",
     "Tennessee",
     "Texas",
     "Utah",
@@ -57,7 +57,6 @@ var dictionary = states = ["Alaska",
 var word = dictionary[Math.floor(Math.random() * dictionary.length)].toLowerCase().split("");
 var missed = 15;
 var missed_guesses = [];
-
 var letter_count = 0;
 
 function getRandomArbitrary(word) {
@@ -67,9 +66,17 @@ function getRandomArbitrary(word) {
 function get_number() {
     var next_word = getRandomArbitrary();
     return next_word
-
-
 }
+
+function getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
+
 
 
 function show_span(next_word) {
@@ -91,19 +98,11 @@ function show_letter(letter) {
 }
 
 
-
-
-
-
-
-
-
-
-
 $(document).ready(function() {
 
     show_span(word);
 
+    $("#guess_span").html("This is how many guesses you have: " + missed);
 
     $("#guessed").html(missed_guesses);
 
@@ -118,6 +117,8 @@ $(document).ready(function() {
 
 
     $("#play_again").on("click", function() {
+        $("#play_again").hide();
+
         guessed = [];
         missed_guesses = [];
         $("#blanks_list").empty();
@@ -125,10 +126,9 @@ $(document).ready(function() {
         word = next_word;
         missed = 15;
         $("#guessed").html(missed_guesses);
-
-        $("#guesses").html(missed)
+        $("#blanks_list").show();
+        $("#guess_span").html("This is how many guesses you have: " + missed);
         $('ul li').children(':hidden');
-        $("#play_agian").hide();
         $("#winner").hide();
 
         // console.log("The next word is: " + next_word + " so the word is: " + word);
@@ -153,26 +153,24 @@ $(document).ready(function() {
             missed_guesses.push(letter);
 
             missed = missed - 1;
-            $("#guesses").html(missed);
+            $("#guess_span").html("This is how many guesses you have: " + missed);
             $("#guessed").html(missed_guesses);
         }
 
         if ($('ul li').children(':visible').length == word.length) {
+            var color = getRandomColor();
             $("#winner").show();
             var state = "." + word.join("") + "";
-            $(".stately").find(state).css("color", "blue");
+            $(".stately").find(state).css("color", color);
             $("#play_again").show();
         }
-
-
-
-
-
 
         if (missed == 0) {
             $("#guess_span").html("YOU HAVE NO MORE GUESSES");
             $("#play_again").show();
             $("guessed").hide();
+            $("#blanks_list").hide();
+
         };
 
 

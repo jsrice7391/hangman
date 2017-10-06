@@ -17,8 +17,16 @@ h2 {
 .inline {
     display: inline-block;
     margin: 2%;
-    width: 5%;
+    width: 2%;
     border-bottom: 5px solid red;
+    text-align: center;
+}
+
+.space {
+    display: inline-block;
+    margin: 2%;
+    width: 2%;
+    border-bottom: 5px solid green;
     text-align: center;
 }
 
