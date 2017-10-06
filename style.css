@@ -1,16 +1,14 @@
 h1,
 h2 {
     text-align: center;
-    color: white;
 }
 
 body {
     font-family: 'Oswald', sans-serif;
-    background-image: url("usaNight.jpg");
 }
 
 p {
-    color: lightblue;
+    color: black;
 }
 
 #play_again {
