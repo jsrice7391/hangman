@@ -4,7 +4,9 @@ Once the state is guessed, it shows up on the map and is givena  random color.
 
 Tech used:
 
+<ul>
 <li>Stately: https://github.com/mobomo/stately
+<ul>
 <li>
-Stately is used to create the map within the UI. It gives the states as list elements which makes it very dynamic.</li></li>
+Stately is used to create the map within the UI. It gives the states as list elements which makes it very dynamic.</li></ul></li>
 
